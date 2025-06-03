@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Survey Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <span class="title">_Surveys</span>
+        <a href="/">FILL OUT SURVEY</a>
+        <a href="/results">VIEW SURVEY RESULTS</a>
+    </div>
+
+    <div class="form-container">
+        <h2>Survey Results</h2>
+
+        {% if data %}
+        <table>
+            <tr>
+                <td>Total number of surveys:</td>
+                <td>{{ data.total_surveys }}</td>
+            </tr>
+            <tr>
+                <td>Average Age:</td>
+                <td>{{ data.average_age }}</td>
+            </tr>
+            <tr>
+                <td>Oldest person who participated in survey:</td>
+                <td>{{ data.oldest }}</td>
+            </tr>
+            <tr>
+                <td>Youngest person who participated in survey:</td>
+                <td>{{ data.youngest }}</td>
+            </tr>
+            <tr>
+                <td>Percentage of people who like Pizza:</td>
+                <td>{{ data.pizza_percentage }}%</td>
+            </tr>
+            <tr>
+                <td>Average rating - Eat out:</td>
+                <td>{{ data.average_eat_out }}</td>
+            </tr>
+            <tr>
+                <td>Average rating - Watch movies:</td>
+                <td>{{ data.average_watch_movies }}</td>
+            </tr>
+            <tr>
+                <td>Average rating - Listen to radio:</td>
+                <td>{{ data.average_radio }}</td>
+            </tr>
+            <tr>
+                <td>Average rating - Watch TV:</td>
+                <td>{{ data.average_tv }}</td>
+            </tr>
+        </table>
+        {% else %}
+            <p>No Surveys Available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

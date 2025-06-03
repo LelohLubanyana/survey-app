@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fill Out Survey</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <span class="title">_Surveys</span>
+        <a href="/">FILL OUT SURVEY</a>
+        <a href="/results">VIEW SURVEY RESULTS</a>
+    </div>
+
+    <div class="form-container">
+        <h2>Personal Details:</h2>
+        <form action="/submit" method="POST">
+            <label>Full Names:</label>
+            <input type="text" name="name" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" required>
+
+            <label>Date of Birth:</label>
+            <input type="date" name="date" required>
+
+            <label>Contact Number:</label>
+            <input type="text" name="contact" required>
+
+            <label>What is your favorite food?</label><br>
+            <input type="checkbox" name="foods" value="Pizza"> Pizza
+            <input type="checkbox" name="foods" value="Pasta"> Pasta
+            <input type="checkbox" name="foods" value="Pap and Wors"> Pap and Wors
+            <input type="checkbox" name="foods" value="Other"> Other
+
+            <h3>Please rate your level of agreement on a scale from 1 to 5, with 1 being "Strongly Agree" and 5 being "Strongly Disagree":</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Strongly Agree</th>
+                        <th>Agree</th>
+                        <th>Neutral</th>
+                        <th>Disagree</th>
+                        <th>Strongly Disagree</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for question, name in [
+                        ("I like to watch movies", "watch_movies"),
+                        ("I like to listen to radio", "radio"),
+                        ("I like to eat out", "eat_out"),
+                        ("I like to watch TV", "tv")
+                    ] %}
+                    <tr>
+                        <td>{{ question }}</td>
+                        {% for i in range(1,6) %}
+                        <td><input type="radio" name="{{ name }}" value="{{ i }}" required></td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <br>
+            <input type="submit" value="SUBMIT">
+        </form>
+    </div>
+</body>
+</html>
